@@ -1,0 +1,19 @@
+{
+  "run_started_at": "2026-11-01T18:11:00+00:00",
+  "run_status": "success",
+  "source_counts": {
+    "customers": 1,
+    "products": 1,
+    "orders": 4,
+    "order_events": 3
+  },
+  "silver_counts": {
+    "orders": 1,
+    "order_events": 1
+  },
+  "reject_counts": {
+    "orders": 3,
+    "order_events": 2
+  },
+  "gold_daily_order_groups": 1
+}

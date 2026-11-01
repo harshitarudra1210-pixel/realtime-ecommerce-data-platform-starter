@@ -1,0 +1,5 @@
+order_id,customer_id,order_ts,order_status,_source_file,_ingested_at
+O1,1,2026-11-01T10:00:00Z,placed,data/sample/orders.csv,2026-11-01T18:11:00+00:00
+O2,999,2026-11-01T11:00:00Z,placed,data/sample/orders.csv,2026-11-01T18:11:00+00:00
+O3,1,not-a-date,cancelled,data/sample/orders.csv,2026-11-01T18:11:00+00:00
+O4,1,,placed,data/sample/orders.csv,2026-11-01T18:11:00+00:00

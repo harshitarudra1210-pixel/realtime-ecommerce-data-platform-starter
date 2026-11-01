@@ -1,0 +1,20 @@
+{
+  "project_name": "realtime-ecommerce-data-platform",
+  "environment": "local",
+  "sources": [
+    "data/sample/customers.csv",
+    "data/sample/products.csv",
+    "data/sample/orders.csv",
+    "data/sample/order_events.jsonl"
+  ],
+  "quality": {
+    "require_order_id": true,
+    "quantity_must_be_positive": true,
+    "deduplicate_events_by": "event_id"
+  },
+  "layers": {
+    "bronze": "data/bronze",
+    "silver": "data/silver",
+    "gold": "data/gold"
+  }
+}

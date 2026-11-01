@@ -1,0 +1,11 @@
+flowchart TD
+    A[CSV / JSON sample sources] --> B[Python ingestion]
+    E[Simulated order events] --> B
+    B --> C[Bronze: raw data]
+    C --> D[Silver: validated and deduplicated]
+    D -->|Invalid records + reasons| X[Quarantine / rejects]
+    D --> F[Gold: business aggregates]
+    F --> G[SQL reports / optional dashboard]
+    B -.-> H[Pipeline run logs]
+    D -.-> I[Data quality results]
+    F -.-> H

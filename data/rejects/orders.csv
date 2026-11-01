@@ -1,0 +1,4 @@
+order_id,customer_id,order_ts,order_status,_reject_reason
+O2,999,2026-11-01T11:00:00Z,placed,unknown_customer_id
+O3,1,not-a-date,cancelled,invalid_order_timestamp
+O4,1,,placed,missing_order_timestamp

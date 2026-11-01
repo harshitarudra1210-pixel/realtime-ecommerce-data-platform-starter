@@ -1,0 +1,2 @@
+customer_id,name,_source_file,_ingested_at
+1,Test Customer,data/sample/customers.csv,2026-11-01T18:11:00+00:00

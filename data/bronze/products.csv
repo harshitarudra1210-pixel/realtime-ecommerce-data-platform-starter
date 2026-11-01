@@ -1,0 +1,2 @@
+product_id,name,_source_file,_ingested_at
+10,Test Product,data/sample/products.csv,2026-11-01T18:11:00+00:00

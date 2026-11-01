@@ -1,0 +1,2 @@
+{"_reject_reason": "duplicate_event_id", "event_id": "E1", "event_type": "order_created"}
+{"_reject_reason": "missing_event_id", "event_type": "missing_id"}
