@@ -179,3 +179,14 @@ cython_debug/
 #  refer to https://docs.cursor.com/context/ignore-files
 .cursorignore
 .cursorindexingignore
+
+# Generated pipeline outputs
+data/bronze/
+data/silver/
+data/gold/
+data/rejects/
+data/observability/
+
+# Python test artifacts
+__pycache__/
+*.pyc

@@ -1,0 +1,9 @@
+order_id,customer_id,product_id,quantity,unit_price,order_date,status
+1001,C001,P101,0,500,2026-10-27,completed
+1002,C002,P102,1,1200,2026-10-27,pending
+1003,C003,P103,3,300,2026-10-28,completed
+1004,C001,P104,1,800,2026-10-28,cancelled
+1005,C004,P101,2,500,2026-10-29,completed
+1006,C005,P105,1,1500,2026-10-29,pending
+1007,C002,P103,4,300,2026-10-30,completed
+1008,C006,P106,2,700,2026-10-30,completed
