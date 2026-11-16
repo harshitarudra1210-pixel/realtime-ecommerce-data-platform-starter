@@ -1,75 +1,213 @@
 # Real-Time E-Commerce Data Platform with Cloud Lakehouse and Data Observability
 
-A portfolio project that demonstrates an end-to-end data engineering workflow for e-commerce data: ingestion, Bronze/Silver/Gold lakehouse layers, data quality, orchestration, and pipeline observability.
+An end-to-end Data Engineering portfolio project demonstrating an e-commerce data pipeline using Python, SQL, a Bronze-Silver-Gold lakehouse architecture, data quality validation, and pipeline observability.
 
-> **Status:** Starter repository / design phase. Features listed here are planned until implemented and tested.
+**Project Status:** Local batch pipeline implemented. Automated tests passing. Streaming, orchestration, and cloud integration are planned future milestones.
 
-## Business problem
-E-commerce data arrives from different sources (customers, products, orders, payments, inventory, and order events). Duplicate events, invalid records, missing data, and inconsistent statuses can make reports unreliable. This project will create a repeatable pipeline that preserves raw inputs, validates and transforms records, and produces analytics-ready datasets.
+## 1. Business Problem
 
-## Planned architecture
-1. **Sources:** CSV/JSON sample files and simulated order events.
-2. **Ingestion:** Python loaders record source and ingestion metadata.
-3. **Bronze:** Preserve raw input with minimal changes.
-4. **Silver:** Validate schema, normalize types, deduplicate by documented rules, and quarantine invalid records.
-5. **Gold:** Publish business-ready metrics such as daily sales and product performance.
-6. **Observability:** Record run status, counts, errors, and data-quality results.
-7. **Orchestration:** Add workflow scheduling after the local batch pipeline is working.
+E-commerce platforms generate data from multiple sources, including customers, products, orders, and order events.
 
-## Repository structure
+Data may contain:
+- Missing or invalid values
+- Unknown customer references
+- Duplicate events
+- Invalid timestamps
+- Inconsistent records
+
+These issues can affect reporting accuracy and business decisions.
+
+This project demonstrates how to build a repeatable data pipeline that ingests raw data, validates records, separates rejected data, and generates analytics-ready datasets.
+
+## 2. Project Architecture
+
+The pipeline follows a Bronze-Silver-Gold architecture.
+
+**Data Flow:**
+
+Source Data → Ingestion → Bronze → Silver → Gold → Analytics
+
+Invalid records are stored separately in Rejects, while execution information is maintained in Observability.
+
+### Architecture Layers
+
+1. **Source:** Synthetic CSV and JSONL sample data.
+2. **Ingestion:** Python loaders read source files and add ingestion metadata.
+3. **Bronze:** Preserves ingested source records.
+4. **Silver:** Validates and processes records, identifying invalid data.
+5. **Rejects:** Stores invalid records with rejection reasons.
+6. **Gold:** Produces analytics-ready datasets, including daily order counts.
+7. **Observability:** Stores execution summaries, record counts, and pipeline status.
+
+## 3. Current Implementation
+
+| Component | Implementation status |
+|---|---|
+| Python batch ingestion | Implemented |
+| Bronze layer | Implemented |
+| Silver validation | Implemented |
+| Gold analytics | Implemented |
+| Reject handling | Implemented |
+| Pipeline run summary | Implemented |
+| Automated tests | 6 tests passing |
+| GitHub Actions CI | Passing |
+| Kafka streaming | Planned |
+| Airflow orchestration | Planned |
+| Cloud lakehouse | Planned |
+
+## 4. Technology Stack
+
+- **Python:** Data ingestion, validation, and transformation.
+- **SQL:** Planned database and analytics operations.
+- **CSV / JSONL:** Sample source data formats.
+- **Git and GitHub:** Version control and collaboration.
+- **pytest:** Automated testing.
+- **GitHub Actions:** Continuous integration.
+
+Future technologies:
+- PostgreSQL
+- Apache Parquet
+- Apache Kafka
+- Apache Airflow
+- Docker
+- Cloud data platform
+
+These technologies will be introduced in later milestones.
+
+## 5. Repository Structure
+
 ```text
-.github/workflows/    CI workflow
-config/               Configuration examples
-data/sample/          Small synthetic sample inputs
-data/bronze/          Local raw-layer output (generated)
-data/silver/          Local cleaned output (generated)
-data/gold/            Local analytics output (generated)
-docs/                 Product specification and high-level design
-sql/                  Schema and analytics SQL
-src/                  Python application code
-tests/                Automated tests
+realtime-ecommerce-data-platform-starter/
+│
+├── .github/
+│   └── workflows/
+│       └── tests.yml
+│
+├── config/
+├── data/
+│   ├── sample/
+│   ├── raw/
+│   ├── bronze/
+│   ├── silver/
+│   ├── gold/
+│   ├── rejects/
+│   └── observability/
+│
+├── docs/
+├── sql/
+│
+├── src/
+│   ├── ingestion/
+│   ├── validation/
+│   ├── main.py
+│   ├── pipeline.py
+│   └── order_pipeline.py
+│
+├── tests/
+│   ├── test_pipeline.py
+│   └── test_starter.py
+│
+├── .gitignore
+├── requirements.txt
+└── README.md
 ```
 
-## Proposed technology stack
-- Python and SQL for ingestion and transformations
-- PostgreSQL for relational storage (planned)
-- Parquet for analytics files (planned)
-- Kafka for simulated event streaming (later milestone)
-- Airflow for orchestration (later milestone)
-- pytest for automated tests
-- Docker and a cloud platform only after the local version works and the stack is approved
+**Note:** Generated pipeline output folders are maintained locally and excluded from Git tracking. Sample input data and source code are maintained in the repository.
 
-Do not install every tool at once. Start with Python, Git/GitHub, and a small local batch pipeline.
+## 6. Prerequisites
 
-## Quick start
-1. Install Python 3.11+ and Git.
-2. Clone this repository or download the ZIP.
-3. Create a virtual environment:
-   ```bash
-   python -m venv .venv
-   ```
-4. Activate it:
-   - Windows PowerShell: `.\.venv\Scripts\Activate.ps1`
-   - macOS/Linux: `source .venv/bin/activate`
-5. Install development dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-6. Run tests:
-   ```bash
-   pytest
-   ```
+- Python 3.11 or above
+- Git
+- GitHub account
+- VS Code (recommended)
 
-The starter tests are intentionally minimal. Pipeline functionality will be added milestone by milestone.
+## 7. Project Setup
 
-## Milestones
-1. Product specification and architecture review
-2. Repository and synthetic sample data
-3. Batch ingestion and Bronze layer
-4. Silver validation and Gold analytics
-5. Data quality results and idempotent reruns
-6. Simulated streaming and orchestration
-7. Monitoring, tests, documentation, and demo
+Clone the repository:
 
-## Data and security
-All included sample data is synthetic. Never commit credentials, API keys, private customer data, or real payment details. Use `.env` locally and keep it out of Git.
+```bash
+git clone https://github.com/harshitarudra1210-pixel/realtime-ecommerce-data-platform-starter.git
+```
+
+Move into the project directory:
+
+```bash
+cd realtime-ecommerce-data-platform-starter
+```
+
+Create a virtual environment:
+
+```bash
+python -m venv .venv
+```
+
+Activate it on Windows PowerShell:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Install dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+## 8. Running the Pipeline
+
+Run the main pipeline:
+
+```bash
+python -m src.main
+```
+
+The pipeline processes the available sample data and generates outputs in the local Bronze, Silver, Gold, Rejects, and Observability folders.
+
+## 9. Running Automated Tests
+
+Run all tests:
+
+```bash
+python -m pytest -v
+```
+
+Current test coverage includes:
+- Valid order processing
+- Unknown customer rejection
+- Invalid and missing timestamps
+- Duplicate and missing event IDs
+- Pipeline run summary generation
+- Starter repository readiness
+
+**Latest verified result:** 6 tests passed.
+
+## 10. GitHub Actions
+
+The repository uses GitHub Actions to execute automated tests when changes are pushed or pull requests are created.
+
+This helps verify that project changes do not break existing functionality.
+
+## 11. Project Milestones
+
+1. Project requirements and architecture design
+2. GitHub repository setup and sample data
+3. Python ingestion and Bronze layer
+4. Silver validation and rejection handling
+5. Gold analytics and pipeline observability
+6. Automated testing and CI integration
+7. Simulated streaming using Kafka
+8. Workflow orchestration using Airflow
+9. Cloud integration and final project demonstration
+
+## 12. Data Security
+
+- All sample data is synthetic.
+- Never commit API keys, passwords, or credentials.
+- Keep local `.env` files out of Git.
+- Do not use real customer or payment information.
+
+## 13. Project Objective
+
+The objective is to develop practical Data Engineering skills by building a realistic, maintainable, and testable data platform.
+
+The project is developed incrementally, with emphasis on data quality, reliability, testing, observability, and industry-style development practices.
